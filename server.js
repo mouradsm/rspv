@@ -32,8 +32,9 @@
 
     router.route('/convidados')
         .post(function(req, res){
-            var convidado = new Convidado();
-            convidado.nome = req.body.nome;
+            var convidado           = new Convidado()
+                convidado.codigo    = req.body.codigo;
+                convidado.nome      = req.body.nome;
 
             convidado.save(function(err){
                 if(err)
@@ -41,6 +42,14 @@
 
                 res.json({ message: 'Convidado Salvo!'});
             });
+        })
+        .get(function(req,res){
+           Convidado.find(function(err, convidados){
+                if(err)
+                    res.send(err);
+
+               res.json(convidados);
+           });
         });
 
     app.use('/api', router);
