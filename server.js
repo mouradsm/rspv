@@ -52,6 +52,34 @@
            });
         });
 
+    router.route('/convidados/:codigo')
+        .get(function(req,res){
+
+            Convidado.find({codigo: req.params.codigo},function(err, convidado){
+                if(err)
+                    res.send(err);
+
+                res.json(convidado);
+           });
+        })
+        .put(function(req, res){
+           Convidado.find({codigo: req.params.codigo}, function(err, convidado){
+
+               if(err)
+                    res.send(err);
+
+               convidado.status = req.body.status;
+
+               convidado.save(function(err){
+
+                   if(err)
+                        res.send(err);
+
+                   res.json( {message : 'Status Atualizado para: ' + convidado.status});
+               });
+           });
+        });
+
     app.use('/api', router);
 
     //Inicialização do APP
