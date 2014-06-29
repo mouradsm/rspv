@@ -6,6 +6,6 @@ var PresenteSchema = new Schema({
       id: String, //[ Códigos: 1 - Familia Noiva, 2 - Familia Noivo, 3 - Amigos em Comum, 4 - Amigos Noivo, 5 - Outros
       desc: String,
       disponivel: Boolean,
-},{collection: 'lista'});
+},{collection: 'presentes'});
 
 module.exports = mongoose.model('Presente', PresenteSchema);
