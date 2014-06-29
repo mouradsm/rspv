@@ -90,6 +90,21 @@
                       res.json(presentes);  
                   });
               })
+              .put(function(req,res){
+                  Presente.find({ids: req.params.ids}, function(err, presente){
+                      if(err)
+                        res.send(err);
+
+                      presente.disponivel = false;
+                      presente.save(function(err){
+
+                          if(err)
+                            res.send(err);
+                          
+                          res.json({message: 'Presentes escolhidos com sucesso!'})                          
+                      });
+                  });
+              })
 
     
 
