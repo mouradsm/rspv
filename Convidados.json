@@ -1,0 +1,73 @@
+[
+    {
+        "codigo"        : 1301,
+        "nome"          : "Isaac José Nunes",
+        "acompanhantes" : ["Ednéia", "Isabel"],
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1102,
+        "nome"          : "Noemia Mendanha",
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1103,
+        "nome"          : "Edson Ramos",
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1304,
+        "nome"          : "Carlos Roberto Siqueira",
+        "acompanhantes" : ["Edna", "Carlos Roberto"],
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1305,
+        "nome"          : "Rogério Spindola",
+        "acompanhantes" : ["Simone", "Luísa"],
+        "st"            : 0,
+        "crianças"      : 1
+    },
+    {
+        "codigo"        : 1106,
+        "nome"          : "Ednilson Ramos",
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1107,
+        "nome"          : "Stephanie Castro",
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1208,
+        "nome"          : "Suzana",
+        "acompanhantes" : ["Fernanda"],
+        "st"            : 0,
+        "crianças"      : 1
+    },
+    {
+        "codigo"        : 1209,
+        "nome"          : "Flávio Figueiredo",
+        "acompanhantes" : ["Luan"],
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1310,
+        "nome"          : "Jorge Esteves",
+        "acompanhantes" : ["Ednilce","Eduarda Inês"],
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1311,
+        "nome"          : "Marcelo Lauria",
+        "acompanhantes" : ["Ediléa", "Elise"],
+        "st"            : 0
+    },
+    {
+        "codigo"        : 1425,
+        "nome"          : "Marcos",
+        "acompanhantes" : ["Luciene", "Leticia", "Daniel"],
+        "st"            : 0,
+        "crianças"      : 2
+    }
+]

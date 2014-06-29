@@ -1,0 +1,12 @@
+{
+  "name": "rspv",
+  "version": "0.0.0",
+  "description": "Sistema para confirmar presença",
+  "main": "server.js",
+  "author": "Diego Moura",
+   "dependencies" : {
+       "express" : "~4.0.0",
+       "body-parser": "~1.0.1",
+       "mongoose": "~3.6.13"
+   }
+}
