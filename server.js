@@ -9,8 +9,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 // Configurações ---
-//mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
-mongoose.connect('mongodb://localhost/rspv');
+mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
+//mongoose.connect('mongodb://localhost/rspv');
 var Presente = require('./app/models/presente');
 var Convidado = require('./app/models/convidado')
 var PresenteLista = require('./app/models/presentelista')
@@ -20,7 +20,6 @@ var PresenteLista = require('./app/models/presentelista')
 app.use(bodyParser());
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', "*");
-
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   next();
@@ -125,7 +124,6 @@ router.route('/lista/:id')
 
 router.route('/lista/:id/:email')
 .put(function(req, res) {
-  console.log(req.params.email);
   Presente.findById(req.params.id,function(err, presente) {
     if (err)
       res.send(err);
