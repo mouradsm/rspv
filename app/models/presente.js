@@ -7,7 +7,7 @@ var PresenteSchema = new Schema({
       desc: String,
       disponivel: Boolean,
       emailPessoa: String
-},{collection: 'presentes'});
+},{collection: 'lista'});
 
 module.exports = mongoose.model('Presente', PresenteSchema);
 
