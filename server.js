@@ -113,7 +113,7 @@ router.route('/lista')
   });
 });
 
-router.route('/lista/:id/')
+router.route('/lista/:id')
 .get(function(req, res) {
   Presente.findById(req.params.id, function(err, presente) {
       if (err)
@@ -125,12 +125,13 @@ router.route('/lista/:id/')
 
 router.route('/lista/:id/:email')
 .put(function(req, res) {
+  console.log(req.params.email);
   Presente.findById(req.params.id,function(err, presente) {
     if (err)
       res.send(err);
 
-    presente.disponivel = false;
-    emailPessoa         = req.params.email;
+    presente.disponivel          = false;
+    presente.emailPessoa         = req.params.email;
 
     console.log(presente);
     presente.save(function(err) {
@@ -141,6 +142,7 @@ router.route('/lista/:id/:email')
       res.json({message: 'Presentes escolhidos com sucesso!'})
     });
   });
+
 })
 
 
