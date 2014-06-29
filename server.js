@@ -11,7 +11,9 @@
 // Configurações ---
 
     mongoose.connect('mongodb://localhost/rspv');
-    var Convidado = require('./app/models/convidado');
+    var Presente       = require('./app/models/presente');
+    var Convidado      = require('./app/models/convidado') 
+    var PresenteLista  = require('./app/models/presentelista') 
 
 // Arquivos de configuração ---
 
@@ -79,6 +81,17 @@
                });
            });
         });
+
+    router.route('/lista')
+              .get(function(req, res){
+                  Presente.find(function(err, presentes){
+                      if(err)
+                          res.send(err);
+                      res.json(presentes);  
+                  });
+              })
+
+    
 
     app.use('/api', router);
 
