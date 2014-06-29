@@ -10,7 +10,7 @@
 
 // Configurações ---
 
-    mongoose.connect('mongodb://<user>:<password>@kahana.mongohq.com:10041/app26894187');
+    mongoose.connect('mongodb://<diego>:<123456>@kahana.mongohq.com:10041/app26894187');
     var Presente       = require('./app/models/presente');
     var Convidado      = require('./app/models/convidado') 
     var PresenteLista  = require('./app/models/presentelista') 
@@ -100,7 +100,7 @@
 
                           if(err)
                             res.send(err);
-                          
+
                           res.json({message: 'Presentes escolhidos com sucesso!'})                          
                       });
                   });
