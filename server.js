@@ -7,6 +7,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
 
 // Configurações ---
 mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
@@ -141,9 +142,31 @@ router.route('/lista/:id/:email')
     });
   });
 
+  router.route('/email/:origin/:destino/:assunto/:corpo')
+    .post(function(req, res){
+        var origin  = req.params.origin;
+        var destino = req.params.destino;
+        var assunto = req.params.assunto;
+        var corpo   = req.params.corpo;
+
+        enviarEmail(origin,destino,assunto,corpo); 
+    });
 })
 
-
+var enviarEmail = function(origin, destino, assunto, corpo){
+  postmark.send({
+    "From": origin,
+    "To": destino,
+    "Subject": assunto,
+    "TextBody": corpo
+}, function(error, success) {
+    if(error) {
+        console.error("Unable to send via postmark: " + error.message);
+       return;
+    }
+    console.info("Sent to postmark for delivery")
+});
+}
 
 app.use('/api', router);
 
