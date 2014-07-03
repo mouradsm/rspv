@@ -40,7 +40,7 @@ router.use(function(req, res, next) {
 
 router.get('/', function(req, res) {
   res.json({
-    message: 'Pelo menos aqui tá funcionando'
+    message: 'Pelo menos aqui tá funcionando, por enquanto'
   })
 });
 
