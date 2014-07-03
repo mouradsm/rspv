@@ -7,6 +7,11 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+<<<<<<< HEAD
+=======
+//var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
+var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
+>>>>>>> listaCasamento
 
 // Configurações ---
 mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
@@ -23,9 +28,13 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   next();
+<<<<<<< HEAD
 }
 );
 
+=======
+  });
+>>>>>>> listaCasamento
 
 
 var port = process.env.PORT || 3000; //configuração da porta
@@ -39,7 +48,11 @@ router.use(function(req, res, next) {
 
 router.get('/', function(req, res) {
   res.json({
+<<<<<<< HEAD
     message: 'Pelo menos aqui tá funcionando'
+=======
+    message: 'Pelo menos aqui tá funcionando, por enquanto'
+>>>>>>> listaCasamento
   })
 });
 
@@ -115,11 +128,19 @@ router.route('/lista')
 router.route('/lista/:id')
 .get(function(req, res) {
   Presente.findById(req.params.id, function(err, presente) {
+<<<<<<< HEAD
       if (err)
         res.send(err);
 
       res.json(presente);
     });
+=======
+    if (err)
+      res.send(err);
+
+    res.json(presente);
+  });
+>>>>>>> listaCasamento
 });
 
 router.route('/lista/:id/:email')
@@ -131,7 +152,10 @@ router.route('/lista/:id/:email')
     presente.disponivel          = false;
     presente.emailPessoa         = req.params.email;
 
+<<<<<<< HEAD
     console.log(presente);
+=======
+>>>>>>> listaCasamento
     presente.save(function(err) {
 
       if (err)
@@ -140,10 +164,38 @@ router.route('/lista/:id/:email')
       res.json({message: 'Presentes escolhidos com sucesso!'})
     });
   });
+<<<<<<< HEAD
 
 })
 
 
+=======
+});
+router.route('/email/:origin/:destino/:assunto/:corpo')
+.post(function(req, res){
+  var origin  = req.params.origin;
+  var destino = req.params.destino;
+  var assunto = req.params.assunto;
+  var corpo   = req.params.corpo;
+
+  enviarEmail(origin,destino,assunto,corpo); 
+});
+
+var enviarEmail = function(origin, destino, assunto, corpo){
+  postmark.send({
+    "From": origin,
+    "To": destino,
+    "Subject": assunto,
+    "TextBody": corpo
+  }, function(error, success) {
+    if(error) {
+      console.error("Unable to send via postmark: " + error.message);
+      return;
+    }
+    console.info("Sent to postmark for delivery")
+  });
+}
+>>>>>>> listaCasamento
 
 app.use('/api', router);
 
