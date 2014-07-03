@@ -7,7 +7,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
+//var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
+var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
 
 // Configurações ---
 mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
@@ -116,11 +117,11 @@ router.route('/lista')
 router.route('/lista/:id')
 .get(function(req, res) {
   Presente.findById(req.params.id, function(err, presente) {
-      if (err)
-        res.send(err);
+    if (err)
+      res.send(err);
 
-      res.json(presente);
-    });
+    res.json(presente);
+  });
 });
 
 router.route('/lista/:id/:email')
@@ -132,7 +133,6 @@ router.route('/lista/:id/:email')
     presente.disponivel          = false;
     presente.emailPessoa         = req.params.email;
 
-    console.log(presente);
     presente.save(function(err) {
 
       if (err)
@@ -141,17 +141,16 @@ router.route('/lista/:id/:email')
       res.json({message: 'Presentes escolhidos com sucesso!'})
     });
   });
+});
+router.route('/email/:origin/:destino/:assunto/:corpo')
+.post(function(req, res){
+  var origin  = req.params.origin;
+  var destino = req.params.destino;
+  var assunto = req.params.assunto;
+  var corpo   = req.params.corpo;
 
-  router.route('/email/:origin/:destino/:assunto/:corpo')
-    .post(function(req, res){
-        var origin  = req.params.origin;
-        var destino = req.params.destino;
-        var assunto = req.params.assunto;
-        var corpo   = req.params.corpo;
-
-        enviarEmail(origin,destino,assunto,corpo); 
-    });
-})
+  enviarEmail(origin,destino,assunto,corpo); 
+});
 
 var enviarEmail = function(origin, destino, assunto, corpo){
   postmark.send({
@@ -159,13 +158,13 @@ var enviarEmail = function(origin, destino, assunto, corpo){
     "To": destino,
     "Subject": assunto,
     "TextBody": corpo
-}, function(error, success) {
+  }, function(error, success) {
     if(error) {
-        console.error("Unable to send via postmark: " + error.message);
-       return;
+      console.error("Unable to send via postmark: " + error.message);
+      return;
     }
     console.info("Sent to postmark for delivery")
-});
+  });
 }
 
 app.use('/api', router);
