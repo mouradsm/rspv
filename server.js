@@ -7,8 +7,8 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-//var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
-var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
+var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
+//var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
 
 // Configurações ---
 mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
