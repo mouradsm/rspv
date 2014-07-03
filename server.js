@@ -142,7 +142,7 @@ router.route('/lista/:id/:email')
     });
   });
 
-  router.route('/email/:origin/:destino/:assunto/:corpo')
+  router.route('/email')
     .get(function(req,res){
       res.json('a');
     })
