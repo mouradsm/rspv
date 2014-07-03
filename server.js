@@ -143,6 +143,9 @@ router.route('/lista/:id/:email')
   });
 
   router.route('/email/:origin/:destino/:assunto/:corpo')
+    .get(function(req,res){
+      res.json('a');
+    })
     .post(function(req, res){
         var origin  = req.params.origin;
         var destino = req.params.destino;
