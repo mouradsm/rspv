@@ -11,11 +11,10 @@ var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
 //var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
 
 // Configurações ---
-mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
-//mongoose.connect('mongodb://localhost/rspv');
+//mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
+mongoose.connect('mongodb://localhost/rspv');
 var Presente = require('./app/models/presente');
 var Convidado = require('./app/models/convidado')
-var PresenteLista = require('./app/models/presentelista')
 
 // Arquivos de configuração ---
 
@@ -26,7 +25,6 @@ app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   next();
   });
-
 
 var port = process.env.PORT || 3000; //configuração da porta
 
