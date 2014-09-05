@@ -5,9 +5,9 @@
 //Módulos --
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
+var bodyParser = require('body-parser');
 //var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
 
 // Configurações ---
@@ -42,20 +42,6 @@ router.get('/', function(req, res) {
 });
 
 router.route('/convidados')
-.post(function(req, res) {
-  var convidado = new Convidado()
-  convidado.codigo = req.body.codigo;
-  convidado.nome = req.body.nome;
-
-  convidado.save(function(err) {
-    if (err)
-      res.send(err);
-
-    res.json({
-      message: 'Convidado Salvo!'
-    });
-  });
-})
 .get(function(req, res) {
   Convidado.find(function(err, convidados) {
     if (err)
@@ -65,11 +51,11 @@ router.route('/convidados')
   });
 });
 
-router.route('/convidados/:codigo')
+router.route('/convidados/:Tag')
 .get(function(req, res) {
 
   Convidado.find({
-    codigo: req.params.codigo
+    Tag: req.params.Tag
   }, function(err, convidado) {
     if (err)
       res.send(err);
@@ -80,13 +66,13 @@ router.route('/convidados/:codigo')
 .put(function(req, res) {
 
   Convidado.find({
-    codigo: req.params.codigo
+    Tag: req.params.Tag
   }, function(err, convidado) {
 
     if (err)
       res.send(err);
 
-    convidado.status = req.body.status;
+    convidado.status = '';
 
     convidado.save(function(err) {
 
@@ -138,6 +124,7 @@ router.route('/lista/:id/:email')
     });
   });
 });
+
 router.route('/email/:origin/:destino/:assunto/:corpo')
 .post(function(req, res){
   var origin  = req.params.origin;
