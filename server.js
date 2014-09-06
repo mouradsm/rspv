@@ -8,6 +8,8 @@ var app = express();
 var mongoose = require('mongoose');
 var postmark = require("postmark")(process.env.POSTMARK_API_KEY)
 var bodyParser = require('body-parser');
+var querystring = require("querystring");
+
 //var postmark = require("postmark")("8fef6ded-728c-4255-a146-f7ca0c425e70")
 
 // Configurações ---
@@ -51,11 +53,12 @@ router.route('/convidados')
   });
 });
 
-router.route('/convidados/:Tag')
+router.route('/convidado/:Tag')
 .get(function(req, res) {
-
+        
   Convidado.find({
-    Tag: req.params.Tag
+
+      Tag : req.params.Tag
   }, function(err, convidado) {
     if (err)
       res.send(err);
