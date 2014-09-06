@@ -55,7 +55,7 @@ router.route('/convidados')
 
 router.route('/convidado/:Tag')
 .get(function(req, res) {
-        
+
   Convidado.find({
 
       Tag : req.params.Tag
