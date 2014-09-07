@@ -18,8 +18,6 @@ mongoose.connect('mongodb://diego:123456@kahana.mongohq.com:10041/app26894187');
 var Presente = require('./app/models/presente');
 var Convidado = require('./app/models/convidado')
 
-console.log(Convidado);
-
 // Arquivos de configuração ---
 
 app.use(bodyParser());
@@ -72,7 +70,8 @@ router.route('/convidado/:Tag')
 router.route('/convidado/:Tag/:confirmados')
     .put(function (req, res) {
         var query = {Tag: req.params.Tag};
-        var mod = {status: 1};
+        var mod = {status: 1,
+                   confirmados: req.params.confirmados};
 
         Convidado.update(query, mod, function(err, convidado){
 
