@@ -71,25 +71,16 @@ router.route('/convidado/:Tag')
 
 router.route('/convidado/:Tag/:confirmados')
     .put(function (req, res) {
+        var query = {Tag: req.params.Tag};
+        var mod = {status: 1};
 
-        Convidado.find({
-            Tag: req.params.Tag
-        }, function (err, convidado) {
+        Convidado.update(query, mod, function(err, convidado){
 
-            if (err)
-                res.send(err);
-
-            convidado.status = '1';
-            //convidado.confirmados = req.params.confirmados;
-
-            convidado.save(function (err) {
-
-                if (err)
-                    res.send(err);
-
-                res.json({
-                    message: 'Status Atualizado para: ' + convidado.status
-                });
+            if (err){
+                return res.send(err);
+            }
+            res.json({
+                message: 'Status Atualizado para: ' + mod.status
             });
         });
     });
